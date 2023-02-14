@@ -1,0 +1,11 @@
+void main( ) {
+  
+  BuscarAlunos buscarAlunos = BuscarAlunos();
+  buscarAlunos();
+}
+
+// quando a classe tiver só um método, eu posso deixar esse método com o nome de call, e quando eu quiser chamar o método, não preciso passar o nome dele, somente o do classe.
+class BuscarAlunos {
+  
+  void call() => print("deivid, willyan, fabiano"); //callable interfaces 
+}

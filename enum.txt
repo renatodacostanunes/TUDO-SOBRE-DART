@@ -1,0 +1,28 @@
+void main() {
+  Pagamento pagamento = Pagamento();
+  pagamento.pagar(TipoPagamento.BOLETO);
+}
+
+enum TipoPagamento {
+  // PIX, BOLETO, CARTAO;
+
+  PIX(1, "Pix"),
+  BOLETO(2, "Boleto"),
+  CARTAO(3, "Cartão");
+
+  final int id;
+  final String value;
+  const TipoPagamento(this.id, this.value);
+}
+
+class Pagamento {
+  void pagar(TipoPagamento tipoPagamento) {
+    if (tipoPagamento.value == "Pix") {
+      print("Pagamento com pix ${tipoPagamento.id}");
+    } else if (tipoPagamento.value == "Boleto") {
+      print("Pagamento com Boleto ${tipoPagamento.id}");
+    } else if (tipoPagamento.value == "Cartão") {
+      print("Pagamento com Cartão ${tipoPagamento.id}");
+    }
+  }
+}

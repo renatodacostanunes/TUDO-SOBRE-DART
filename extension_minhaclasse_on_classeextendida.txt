@@ -1,0 +1,30 @@
+void main() {
+  String nome = "renato";
+  print(nome.toFirstCharToUpperCase());
+  print("primeira maiuscula".toFirstCharToUpperCase());
+  print(EnumTest.enumValue.toValue());
+  print(EnumTest.enumNovo.toValue());
+}
+
+enum EnumTest {
+  enumValue,
+  enumNovo;
+}
+
+extension ExtensionsEnum on EnumTest {
+  String toValue() {
+    Map map = {
+      EnumTest.enumValue: "xpto",
+      EnumTest.enumNovo: "novoValor",
+    };
+    return map[this];
+  }
+}
+
+extension ExtensionString on String {
+  // todo lugar que eu importar essa class, eu terei na string
+  // essa funcão toFirstCharToUpperCase()
+  String toFirstCharToUpperCase() {
+    return this[0].toUpperCase() + substring(1);
+  }
+}

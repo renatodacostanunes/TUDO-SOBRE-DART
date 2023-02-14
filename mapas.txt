@@ -1,0 +1,36 @@
+void main() {
+  // chave, valor
+  Map<String, String> mapa = {"chave": "valor"};
+
+  print(mapa["chave"]);
+  // esse é um meio de adicionar um novo conjunto de chave e valor!
+  mapa.putIfAbsent("novaChave", () => "novoValor");
+
+  print(mapa["novaChave"]);
+
+  // outro meio de adicionar conjunto de chave e valor!
+  mapa["novaChaveDois"] = "novoValorDois";
+
+  print(mapa["chave"]);
+
+  mapa.remove("chave");
+
+  print(mapa);
+
+  // aqui eu atualizo o valor da chave novaChaveDois
+  mapa["novaChaveDois"] = "atualizado";
+
+  // outro meio de atualizar.
+  mapa.update("novaChaveDois", (value) => "atualizando2");
+
+  print(mapa);
+
+  // para cada objeto chave/valor ele retornará o print.
+  mapa.forEach((chave, valor) => print("a chave é $chave, o valor é $valor"));
+
+  // para cada chave do mapa ele vai fazer um print.
+  mapa.keys.forEach(print);
+
+  // para cada valor do mapa ele vai fazer um print.
+  mapa.values.forEach(print);
+}

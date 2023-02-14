@@ -1,0 +1,60 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MaterialApp(home: MyApp()));
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // aqui mesmo o objeto sendo da classe FILHO, ele acessa o método falar(), pois a classe filho HERDOU(extends) a classe Pai.
+    filho.falar();
+    Pagamento pagamento = PagarComBoleto();
+    // o objeto pagamento foi criado com a classe PagarComBoleto();
+    // abstraiu o método da class Pagar
+    pagamento.pagar();
+    // aqui eu troco o objeto pagamento de PagarComPix para PagarComBoleto e como as classes respeitam o contrato da class Pagar, é possível fazer essa troca.
+    pagamento = PagarComPix();
+    return Container();
+  }
+}
+
+abstract class Pessoa {
+  String comunicar();
+}
+
+class PessoaET implements Pessoa {
+  //essa classe abstraiu a classe pessoa, ou seja tem que seguir o contrato (tudo que estiver na asbtract class Pessoa deverá ter nesta classe(métodos e atributos)), esse é o conceito de abstração!
+  String comunicar() {
+    return "Olá mundo";
+  }
+}
+
+class Pai {
+  String falar() {
+    return "Gírias";
+  }
+}
+
+class Filho extends Pai {}
+
+Filho filho = Filho();
+
+abstract class Pagamento {
+  void pagar();
+}
+
+class PagarComBoleto implements Pagamento {
+  void pagar() {
+    print("Pagando com boleto");
+  }
+}
+
+class PagarComPix implements Pagamento {
+  void pagar() {
+    print("Pagando com pix");
+  }
+}

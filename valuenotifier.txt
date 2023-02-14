@@ -1,0 +1,41 @@
+import 'dart:math';
+import 'package:flutter/material.dart';
+
+void main() => runApp(MaterialApp(
+      home: MyApp(),
+    ));
+
+class MyApp extends StatelessWidget {
+  MyApp({Key? key}) : super(key: key);
+
+  final ValueNotifier<int> number = ValueNotifier<int>(0);
+
+  random() async {
+    for (int i = 0; i < 10; i++) {
+      await Future.delayed(const Duration(seconds: 1));
+      number.value = Random().nextInt(100);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ValueListenableBuilder(
+              valueListenable: number,
+              builder: (context, value, widget) => Text(
+                "Aleatório $value",
+                style: const TextStyle(fontSize: 30),
+              ),
+            ),
+            ElevatedButton(
+                onPressed: () => random(), child: const Text("Sortear"))
+          ],
+        ),
+      ),
+    );
+  }
+}

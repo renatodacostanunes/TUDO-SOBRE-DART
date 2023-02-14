@@ -1,0 +1,585 @@
+LINK DOS EXERCÍCIOS FEITOS NO DARTPAD ABAIXO...
+
+
+https://hackmd.io/@kuzmapetrovich/S1x90jWGP
+
+
+****************
+EXERCÍCIO 1
+
+
+void main() {
+  String nome = "Renato";
+  int idade = 26;
+  calculoIdade(nome: nome, idade: idade);
+}
+
+void calculoIdade({required String nome, required int idade}) {
+  int paraCemAnos = 100 - idade;
+  print("Faltam $paraCemAnos anos para o $nome completar 100 anos...");
+}
+
+
+****************
+EXERCÍCIO 2
+
+void main() {
+  int numero = 15;
+
+  void parOuImpar() {
+    if (numero % 2 == 0) {
+      print("O número $numero é par");
+    } else {
+      print("O número $numero é impar");
+    }
+  }
+
+  parOuImpar();
+}
+
+
+****************
+EXERCÍCIO 3
+
+
+void main() {
+  List<int> lista = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
+
+  // Consultei no google como funcionava o where, pois tinha visto
+  // recentemente em algum exercício...
+  final Iterable<int> result = lista.where((element) => element < 5);
+  print(result);
+  print("${lista.where((element) => element < 5)}\n");
+
+  menorQueCinco(lista: lista);
+}
+
+// Esse fiz usando minha lógica, a primeira que veio na mente kkk
+void menorQueCinco({required List<int> lista}) {
+  List<int> _lista = [];
+  for (int i = 0; i < lista.length; i++) {
+    if (lista[i] < 5) {
+      _lista.add(lista[i]);
+    }
+  }
+  print(_lista);
+}
+
+/*
+https://dart.dev/codelabs/iterables
+https://api.flutter.dev/flutter/dart-core/Iterable-class.html
+https://api.flutter.dev/flutter/dart-core/Iterable/where.html
+\*
+
+
+
+****************
+EXERCÍCIO 4
+
+void main() {
+  int number = 100;
+  int divisor = 0;
+
+  while (divisor < number) {
+    if (number % divisor == 0) {
+      print("$divisor é divisível por $number");
+    }
+    divisor++;
+  }
+}
+
+
+****************
+EXERCÍCIO 5
+
+
+void main() {
+  List<int> list0 = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
+  List<int> list1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+  List<int> list2 = [];
+  
+  // Print das listas ao invés do loop...
+  // Li na documentação que essa é a maneira correta de fazer,
+  // Ou uma boa pratica...
+  // https://dart-lang.github.io/linter/lints/avoid_function_literals_in_foreach_calls.html
+  for (int numero in list0) {
+    if (list2.contains(numero)) {
+      print(
+          "o número $numero já contem na list2 e não será inserido novamente");
+    } else if (list1.contains(numero)) {
+      list2.add(numero);
+      print("O número $numero foi adicionado na list2");
+    }
+  }
+
+  // Aqui fiz do jeito que eu lembrei (dando uma pesquisinha no google)
+  list0.forEach((int numero) {
+    if (list2.contains(numero)) {
+      print(
+          "o número $numero já contem na list2 e não será inserido novamente");
+    } else if (list1.contains(numero)) {
+      list2.add(numero);
+      print("O número $numero foi adicionado na list2");
+    }
+  });
+
+  print("\nEsses são os números comuns (iguais) entre as listas $list2");
+}
+
+
+****************
+EXERCÍCIO 6
+
+
+void main() {
+  String palavra = "ALVO";
+  String isPalindromo = (palavra.split("").reversed.join(""));
+
+  // .split separa palavra por cada "" e coloca em uma lista
+  // .reversed inverte a posição dos objetos da lista
+  // .join faz com que esses objetos se tornem um só... nesse caso uma String
+  print(isPalindromo);
+
+  if (palavra == isPalindromo) {
+    print(
+        "A palavra $palavra é palindroma, pois tem o mesmo resultado lendro de trás para frente...");
+  } else {
+    print("A palavra $palavra não é palindroma :/");
+  }
+}
+
+
+
+****************
+EXERCÍCIO 7
+
+
+void main() {
+  List<int> list = [1, 4, 9, 16, 25, 36, 49, 64, 81, 100];
+
+  final List<int> a = ePar(list: list);
+  print(a.length);
+}
+
+// jeito mais apropriado para criar funções, essa retorna List<int>
+// porém também já deixei que ela imprima os valores, para não ter que atribuir
+// _list1 a uma variável...
+
+List<int> ePar({required List<int> list}) {
+  List<int> newList = [];
+  for (int number in list) {
+    if (number % 2 == 0) {
+      newList.add(number);
+      print(number);
+    }
+  }
+  print("Todos os números pares que contem na list estão aqui -> $newList");
+  return newList;
+}
+
+
+
+
+****************
+EXERCÍCIO 8
+
+
+import 'dart:math';
+
+void main() {
+  // Onde devo fazer a instanciação dos meus objetos ?
+  List<String> opcoes = ["Pedra", "Papel", "Tesoura"];
+  final random = Random();
+  Jogador renato =
+      Jogador(nome: "Renato", escolheu: opcoes[random.nextInt(opcoes.length)]);
+  Jogador kaio =
+      Jogador(nome: "Kaio", escolheu: opcoes[random.nextInt(opcoes.length)]);
+  quemGanhou(jogadorUm: renato, jogadorDois: kaio);
+}
+
+class Jogador {
+  String nome;
+  String escolheu;
+  Jogador({required this.nome, required this.escolheu});
+}
+
+void quemGanhou({required Jogador jogadorUm, required Jogador jogadorDois}) {
+  print("${jogadorUm.nome} vs ${jogadorDois.nome}");
+  print("${jogadorUm.escolheu} vs ${jogadorDois.escolheu}");
+  // Mudar para switch case...
+  if (jogadorUm.escolheu == jogadorDois.escolheu) {
+    print("EMPATOU !");
+  } else if (jogadorUm.escolheu == "Pedra" &&
+          jogadorDois.escolheu == "Tesoura" ||
+      jogadorUm.escolheu == "Tesoura" && jogadorDois.escolheu == "Papel" ||
+      jogadorUm.escolheu == "Papel" && jogadorDois.escolheu == "Pedra") {
+    print(
+        "${jogadorUm.nome} escolheu ${jogadorUm.escolheu} e GANHOU do ${jogadorDois.nome} que escolheu ${jogadorDois.escolheu}");
+  } else {
+    print(
+        "${jogadorDois.nome} escolheu ${jogadorDois.escolheu} e GANHOU do ${jogadorUm.nome} que escolheu ${jogadorUm.escolheu}");
+  }
+}
+
+/* List<String> sports = ['cricket', 'football', 'tennis', 'baseball'];
+ Map<int, String> map = sports.asMap();
+ print(map); // {0: cricket, 1: football, 2: tennis, 3: baseball}
+
+
+
+
+
+
+****************
+EXERCÍCIO 9
+
+
+import 'dart:math';
+
+void main() {
+  int aleatorio = (Random().nextInt(100) + 1);
+  int numeroEscolhido = (Random().nextInt(100) + 1);
+  int resultado = aleatorio - numeroEscolhido;
+  // aleatorio vai receber números de 0 à 99...
+  // se eu quiser alterar por exemplo para 1 à 100, devo deixar assim
+  // int aleatorio = (Random().nextInt(100) + 1);
+  // se der 0 ou 99 ele soma +1 e fica tudo certo :D
+
+  print(
+      "Se a diferença entre o número aleatório e o número escolhido\nfor menor ou igual a 20, você passou perto\nse for maior que 20, você passou longe\n");
+  print("Número aleatório = $aleatorio");
+  print("Número escolhido = $numeroEscolhido");
+
+  advinhaNumero(
+      aleatorio: aleatorio,
+      numeroEscolhido: numeroEscolhido,
+      resultado: resultado);
+}
+
+void advinhaNumero({
+  required int aleatorio,
+  numeroEscolhido,
+  resultado,
+}) {
+  if (aleatorio == numeroEscolhido) {
+    print("Parabéns, acertou na mosca");
+    return;
+  }
+  if (resultado.isNegative) {
+    resultado = resultado * -1;
+  }
+  print("\n$resultado DIFERENÇA");
+  if (resultado <= 20) {
+    print("Passou PERTO");
+  } else {
+    print("Passou LONGE");
+  }
+}
+
+
+
+
+
+****************
+EXERCÍCIO 10
+
+
+void main() {
+  ePrimo(aleatorio: 101);
+}
+
+void ePrimo({required int aleatorio}) {
+  int contResto = 0;
+  for (int i = 1; i <= aleatorio; i++) {
+    if (aleatorio % i == 0) {
+      contResto++;
+    }
+    print("$i, conte resto = $contResto");
+  }
+
+  if (contResto == 2) {
+    print("O número $aleatorio é primo");
+  } else {
+    print("O número $aleatorio não é primo");
+  }
+}
+
+
+
+****************
+EXERCÍCIO 11
+
+
+void main() {
+  List<int> list = [5, 10, 15, 20, 25];
+  List<int> a = _pegarPrimeiroeUltimoNumero(list: list);
+  print(a);
+}
+
+List<int> _pegarPrimeiroeUltimoNumero({required List<int> list}) {
+  List<int> firstLast = [];
+  firstLast.insert(0, list.first);
+  firstLast.insert(1, list.last);
+  return firstLast;
+}
+
+
+
+
+****************
+EXERCÍCIO 12
+
+
+void main() {
+  int a = 0;
+  int b = 1;
+  int c = 0;
+  int d = 9;
+
+  fibonacci(a: a, b: b, c: c, d: d);
+}
+
+void fibonacci(
+    {required int a, required int b, required int c, required int d}) {
+  for (int i = 0; i < d; i++) {
+    print("$a A, $b B, $c C");
+    c = a + b;
+    a = b;
+    b = c;
+  }
+}
+
+
+
+****************
+EXERCÍCIO 13
+
+
+void main() {
+  List<int> antiga = [1, 1, 2, 3, 3, 4, 5, 5, 6, 7, 7, 8];
+  List<int> a = _removeDuplicata(lista: antiga);
+  print(a);
+}
+
+// Tem como não adicionar os números duplicados sem a ajuda de uma
+// terceira lista, para poder comparar...
+List<int> _removeDuplicata({required List<int> lista}) {
+  List<int> atual = [];
+  for (var element in lista) {
+    if (atual.contains(element)) {
+      atual.remove(element);
+    } else {
+      atual.add(element);
+    }
+  }
+  return atual;
+}
+
+
+
+****************
+EXERCÍCIO 14
+
+
+void main() {
+  print(inverterFrase(frase: "Eu vou vencer na vida"));
+}
+
+String inverterFrase({required String frase}) {
+  String stringLongaContraria = frase.split(" ").reversed.join("");
+  return stringLongaContraria;
+}
+
+
+
+
+****************
+EXERCÍCIO 15
+
+
+
+import 'dart:math';
+
+void main() {
+  Random random = Random();
+  String senha;
+  List<String> listString = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z"
+  ];
+
+  List<int> listNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  List<dynamic> listCaracters = [
+    "!",
+    "@",
+    "#",
+    "\$",
+    "%",
+    "&",
+    "*",
+    "(",
+    ")",
+    "-",
+    "_",
+    "=",
+    "+",
+    "/",
+    ".",
+    ",",
+    "´",
+    "`",
+    "[",
+    "]",
+    "{",
+    "}",
+    ";",
+    ":",
+    "<",
+    ">",
+    "/",
+    "?",
+  ];
+
+  senha = gerarSenha(
+          listString: listString,
+          listNumbers: listNumbers,
+          random: random,
+          listCaracters: listCaracters)
+      .join();
+
+  print("A SENHA É = $senha");
+}
+
+List<dynamic> gerarSenha(
+    {required List<String> listString,
+    required List<int> listNumbers,
+    required Random random,
+    required List<dynamic> listCaracters}) {
+  List<dynamic> newPassWord = [];
+
+  for (int i = 0; i <= 5;) {
+    newPassWord.insert(i, listString[random.nextInt(listString.length)]);
+    i++;
+    newPassWord.insert(i, listNumbers[random.nextInt(listNumbers.length)]);
+    i++;
+    newPassWord.insert(i, listCaracters[random.nextInt(listCaracters.length)]);
+    i++;
+    newPassWord.insert(
+        i, listString[random.nextInt(listString.length)].toLowerCase());
+    i++;
+  }
+
+  return newPassWord;
+}
+
+
+
+****************
+EXERCÍCIO 16
+
+
+import 'dart:io';
+import 'dart:math';
+
+void main() {
+  Random random = Random();
+  List<int> aleatorio = [];
+  String? numero;
+  int touro = 0;
+  int vaca = 0;
+  int palpite = 0;
+  int termina = 4;
+  int n0 = 0;
+  int n1 = 1;
+  int n2 = 2;
+  int n3 = 3;
+  for (int i = 0; i <= 3; i++) {
+    aleatorio.insert(i, random.nextInt(10));
+  }
+
+  print("numero aleatório $aleatorio");
+  while (vaca < termina) {
+    print("VACA = $vaca, TOURO = $touro, PALPITE = $palpite");
+    if (n0 == 0) {
+      print("ADVINHA O NUMERO NA POSICAO 0");
+      numero = stdin.readLineSync();
+      palpite++;
+      if (aleatorio[0] == int.parse(numero!)) {
+        print("Parabéns, você acertou o numero $numero na posicao 0");
+        n0 = 1;
+        vaca++;
+      } else if (aleatorio.contains(int.parse(numero))) {
+        touro++;
+        print("Parabéns, você acertou o numero $numero na posicao diferente");
+      }
+    }
+    if (n1 == 1) {
+      print("ADVINHA O NUMERO NA POSICAO 1");
+      numero = stdin.readLineSync();
+      palpite++;
+      if (aleatorio[1] == int.parse(numero!)) {
+        print("Parabéns, você acertou o numero $numero na posicao 1");
+        n1 = 2;
+        vaca++;
+      } else if (aleatorio.contains(int.parse(numero))) {
+        touro++;
+        print("Parabéns, você acertou o numero $numero na posicao diferente");
+      }
+    }
+    if (n2 == 2) {
+      print("ADVINHA O NUMERO NA POSICAO 2");
+      numero = stdin.readLineSync();
+      palpite++;
+      if (aleatorio[2] == int.parse(numero!)) {
+        print("Parabéns, você acertou o numero $numero na posicao 2");
+        n2 = 3;
+        vaca++;
+      } else if (aleatorio.contains(int.parse(numero))) {
+        touro++;
+        print("Parabéns, você acertou o numero $numero na posicao diferente ");
+      }
+    }
+    if (n3 == 3) {
+      print("ADVINHA O NUMERO NA POSICAO 3");
+      numero = stdin.readLineSync();
+      palpite++;
+      if (aleatorio[3] == int.parse(numero!)) {
+        print("Parabéns, você acertou o numero $numero na posicao 3");
+        n3 = 4;
+        vaca++;
+      } else if (aleatorio.contains(int.parse(numero))) {
+        touro++;
+        print("Parabéns, você acertou o numero $numero na posicao diferente");
+      }
+    }
+  }
+  print("O jogo acabou, obrigado por jogar Kaio Professor :D");
+}
+
+
+****************
+EXERCÍCIO 17

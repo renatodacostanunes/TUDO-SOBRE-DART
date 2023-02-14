@@ -1,0 +1,45 @@
+void main() {
+  try {
+    // tentar algo
+    print((2 / 0).toInt()); // forcei o erro.
+  } catch (e, stackStrace) {
+    // e captura o erro, stackStrace.
+    // captura a pilha de erros.
+    // rethrow retorna/ignora o erro, a aplicação provavelmente irá travar...
+    // throw Exception("Ocorreu um erro $e"); // retorna um novo erro.
+    // throw CustomError("Erro customizado");
+  }
+
+  // OUTRO EXEMPLO *** // OUTRO EXEMPLO *** // OUTRO EXEMPLO ***
+
+  Login login = Login();
+
+  try {
+    login.logar();
+  } on PasswordLengthError catch (e) {
+    print("falhou ao logar");
+  } catch (e) {
+    print("Outro erro");
+  } finally {
+    // sempre será executado caso falhe o try...
+    print("Executo independente dos catchs...");
+  }
+}
+
+class Login {
+  void logar() {
+    String user = "admin";
+    String pass = "123";
+    // if (pass.length <= 6) throw PasswordLengthError();
+    if (pass.length <= 6) throw Exception();
+  }
+}
+
+class CustomError implements Exception {
+  final String error;
+  CustomError(this.error);
+}
+
+class PasswordLengthError implements Exception {
+  PasswordLengthError();
+}

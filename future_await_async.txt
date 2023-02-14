@@ -1,0 +1,16 @@
+void main() async {
+  // Future, Async e Await
+  // Aqui eu estou dizendo que o cepFuture irá receber uma String no futuro.
+  Future<String> cepFuture = getCepByName("Rua JK");
+  //aqui eu digo que a variável cep será inicializada antes de ser usada.
+  late String cep;
+  // só printará o cep, assim que que o cep receber o valor de cepFuture, o await faz essa linha de código esperar até ser concluída para ir para a próxima.
+  cep = await cepFuture;
+  print(cep);
+}
+
+// external service
+// essa função me retornará no futuro uma String.
+Future<String> getCepByName(String name) {
+  return Future.value("09270-150");
+}

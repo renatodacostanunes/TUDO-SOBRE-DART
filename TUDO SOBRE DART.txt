@@ -1,0 +1,1668 @@
+// RETORNO DE FUNCÕES RETORNO DE FUNCÕES RETORNO DE FUNCÕES RETORNO DE FUNCÕES RETORNO DE FUNCÕES
+// RETORNO DE FUNCÕES RETORNO DE FUNCÕES RETORNO DE FUNCÕES RETORNO DE FUNCÕES RETORNO DE FUNCÕES
+// RETORNO DE FUNCÕES RETORNO DE FUNCÕES RETORNO DE FUNCÕES RETORNO DE FUNCÕES RETORNO DE FUNCÕES
+
+void main() {
+  saudacoes();
+}
+
+void saudacoes() {
+  //void significa que a função não tem nenhum retorno.
+  print('Saudações do Daniel');
+  print('Seja bem-vindo(a)!');
+  print('Agora ${agora()}');
+  // Deve-se colocar {} quando chamar o retorno de uma função em outra função dentro de um print.
+}
+
+String agora() {
+  // Essa função retorna um valor, que no caso é uma String, por isso já declarei o tipo ao lado da função.
+  DateTime agora = DateTime.now();
+  //Variável "agora" recebe o valor do atributo "DateTime.now();"
+  return agora.toString();
+  //Converte o valor de agora (que é do tipo DateTime) para String.
+}
+
+
+// PARÂMETROS DE FUNÇÕES PARÂMETROS DE FUNÇÕES PARÂMETROS DE FUNÇÕES PARÂMETROS DE FUNÇÕES
+// PARÂMETROS DE FUNÇÕES PARÂMETROS DE FUNÇÕES PARÂMETROS DE FUNÇÕES PARÂMETROS DE FUNÇÕES
+// PARÂMETROS DE FUNÇÕES PARÂMETROS DE FUNÇÕES PARÂMETROS DE FUNÇÕES PARÂMETROS DE FUNÇÕES
+
+void main() {
+  //Por serem parâmetros posicionais, devem se colocar todos em ordem para funcionar...
+  saudacoes('Daniel', sep: '*', mostrarAgora: false);
+  //Estou passando o parâmetro 'Daniel' para a variável "nome", e o parâmetro false para a variável "mostrarAgora"
+  saudacoes('Daniel', mostrarAgora: true, sep: '*');
+  //Substituí os '---' por '***'
+}
+
+// void saudacoes(String nome, bool mostrarAgora) // quando os parâmetros ficam somente em () eles tem que ser declarados obrigatóriamente na função main principal.
+//void saudacoes(String nome, [bool mostrarAgora = true]) // quando os parâmetros ficam entre [] eles não tem que obrigatoriamente serem declarados, porém eu tenho que obrigatóriamente deixar um valor "PADRÃO"
+//{bool mostrarAgora = true, String sep = '-'} // quando os parâmetros ficam entre {} eles são POSICIONAIS NOMEADOS, não precisa mais declarar na ordem, porém precisa informar qual o parâmetro e o valor que ele recebera.
+void saudacoes(String nome, {bool mostrarAgora = true, String sep = '-'}) {
+  //void significa que a função não tem nenhum retorno.
+  print(sep * 20);
+  // ele imprime o sep 20 vezes
+  print('Saudações do $nome');
+  print('Seja bem-vindo(a)!');
+  if (mostrarAgora) {
+    print('Agora ${agora()}');
+  }
+  // Deve-se colocar {} quando chamar o retorno de uma função em outra função dentro de um print.
+}
+
+String agora() {
+  DateTime agora = DateTime.now();
+  return agora.toString();
+}
+
+
+// VARIÁVEIS NULLABLE // VARIÁVEIS NULLABLE // VARIÁVEIS NULLABLE // VARIÁVEIS NULLABLE
+// VARIÁVEIS NULLABLE // VARIÁVEIS NULLABLE // VARIÁVEIS NULLABLE // VARIÁVEIS NULLABLE
+// VARIÁVEIS NULLABLE // VARIÁVEIS NULLABLE // VARIÁVEIS NULLABLE // VARIÁVEIS NULLABLE
+
+void main() {
+  saudacoes('Daniel');
+}
+
+void saudacoes(
+  String nome, {
+  bool mostrarAgora = true,
+  String? cliente,
+  // ? serve para declarar a variável como null, ou seja, ela recebe o valor de null caso não seja declarado o valor, se não for declarado nenhum valor a ela, ela não poderá ser usada para fazer nenhuma operação!
+}) {
+  print('Saudações do $nome');
+
+  if (cliente != null) {
+    print('Seja bem-vindo(a)! $cliente');
+  }
+
+  if (mostrarAgora) {
+    print('Agora: ${agora()}');
+  }
+}
+
+String agora() {
+  DateTime agora = DateTime.now();
+  return agora.toString();
+}
+
+
+// CONVERSÃO NULLABLE PARA NON-NULLABLE // CONVERSÃO NULLABLE PARA NON-NULLABLE // CONVERSÃO NULLABLE PARA NON-NULLABLE
+// CONVERSÃO NULLABLE PARA NON-NULLABLE // CONVERSÃO NULLABLE PARA NON-NULLABLE // CONVERSÃO NULLABLE PARA NON-NULLABLE
+// CONVERSÃO NULLABLE PARA NON-NULLABLE // CONVERSÃO NULLABLE PARA NON-NULLABLE // CONVERSÃO NULLABLE PARA NON-NULLABLE
+
+void main() {
+  saudacoes('Daniel');
+}
+
+void saudacoes(
+  String nome, {
+  bool mostrarAgora = true,
+  String? cliente,
+}) {
+  print(
+      'Saudações do ${nome.toUpperCase()}'); // to.UpperCase é um MÉTODO da classe STRING e serve para transformar o texto da variável nome todo em MAIÚSCULO, Obs: Devo colocar a variável e o método dentro de {} para funcionar.
+
+  String c = cliente ?? 'Não informado';
+  // Essa é uma forma de definir um valor padrão para a variável cliente, que é uma variável nullable, se não fizer isso a variável c não aceitaria receber o valor da variável cliente, pois a variável c é obrigatória ter valor, e a variável cliente não.
+
+  if (cliente != null) {
+    print('Seja bem-vindo(a)! ${c.toUpperCase()}');
+    // caso cliente seja diferente de null, essa função será executada.
+  }
+}
+
+
+// RESUMO SOBRE PARÂMETROS // RESUMO SOBRE PARÂMETROS // RESUMO SOBRE PARÂMETROS
+// RESUMO SOBRE PARÂMETROS // RESUMO SOBRE PARÂMETROS // RESUMO SOBRE PARÂMETROS
+// RESUMO SOBRE PARÂMETROS // RESUMO SOBRE PARÂMETROS // RESUMO SOBRE PARÂMETROS
+
+void main() {
+  funcao('Olá', null, c: null, e: null, d: 'teste');
+}
+
+void funcao(
+  String a, // variável é obrigatória a declaração e posicional
+  String? b, // variável é obrigatória e posicional, porem pode receber null.
+  {
+  // variáveis dentro de {} são nomeáveis, ou seja, posso passar elas na ordem que eu quiser.
+  String? c = 'abc',
+  // variável c, do tipo String?, pode ser nula, tem valor padrão 'abc', caso não seja passado um valor, não é obrigatório passar.
+  required String d,
+  // required serve para obrigar a declarar uma variável, mesmo que ela seja nomeável, não pode receber valor null pois não tem ? no final do String.
+  required String? e,
+  // diferente da variável D, essa variável E pode receber o valor de null, mas continua sendo obrigatória por conta do required.
+}) {
+  print("$a, $b, $c, $d, $e");
+}
+
+
+// FUNÇÕES ANONIMAS // FUNÇÕES ANONIMAS // FUNÇÕES ANONIMAS // FUNÇÕES ANONIMAS // FUNÇÕES ANONIMAS // FUNÇÕES ANONIMAS
+// FUNÇÕES ANONIMAS // FUNÇÕES ANONIMAS // FUNÇÕES ANONIMAS // FUNÇÕES ANONIMAS // FUNÇÕES ANONIMAS // FUNÇÕES ANONIMAS
+// FUNÇÕES ANONIMAS // FUNÇÕES ANONIMAS // FUNÇÕES ANONIMAS // FUNÇÕES ANONIMAS // FUNÇÕES ANONIMAS // FUNÇÕES ANONIMAS
+
+void main() {
+  saudacoes(repet);
+  // chamo a função saudações, e passo como parâmetro para a variavel corpo do tipo Function
+  // a função repet, ou seja, executará a funcao repet.
+}
+
+void saudacoes(Function corpo) {
+  // a variável corpo é do tipo Function, ou seja ela recebe como parâmetro uma função.
+  corpo(
+      i: 5); // esse valor 5 é atribuido ao valor da variável i da função repet.
+}
+
+void repet({required int i}) {
+  for (int j = 0; j < i; j++) {
+    print('Olá $j');
+  }
+}
+
+
+// RETORNO DE FUNÇÕES COM NULLABLES // RETORNO DE FUNÇÕES COM NULLABLES // RETORNO DE FUNÇÕES COM NULLABLES
+// RETORNO DE FUNÇÕES COM NULLABLES // RETORNO DE FUNÇÕES COM NULLABLES // RETORNO DE FUNÇÕES COM NULLABLES
+// RETORNO DE FUNÇÕES COM NULLABLES // RETORNO DE FUNÇÕES COM NULLABLES // RETORNO DE FUNÇÕES COM NULLABLES
+
+void main() {
+  String nome = conta(11) ?? 'Não informado';
+  // a variável nome do tipo String, recebe o resultado da funcao conta, se o resultado da funcao conta for null, a funcao conta receberá o valor de 'Não informado'.
+  // conta(5) o 5 é valor atribuído a variável X da função conta...
+  // ?? 'Não informado' é o valor que o nome receberá caso a função conta retornar null;
+  print(nome.toUpperCase());
+}
+
+String? conta(int x)
+// a funcao conta retorna String? ou null;
+{
+  if (x > 10) {
+    return 'Olá mundo!';
+  } else {
+    return null;
+  }
+} // se x não for maior que 10 ele retornará o valor nulo, que será substituído por 'Não informado'.
+
+
+// ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO
+// ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO
+// ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO // ESCOPO
+
+int a = 0;
+void main() {
+  a = 10; // é possível alterar a variável A porquê ela está no escopo anterior a esse.
+
+  void funcao() {
+    a = 50; // é possível alterar a variável A porquê ela está no escopo anterior a esse.
+
+    int b = 5;
+    void funcao2(int c) {
+      b = 20; // é possível alterar a variável B porquê ela está no escopo anterior a esse.
+
+      int c = 30; // a preferência é dessa variável C e não da de cima.
+      print(c);
+    }
+
+    // c = 40; // não é possível alterar a variável C porquê ela não está neste escopo (funcao), ela está no escopo (funcao2)
+  }
+
+  funcao(); // é possível acessar a essa funcao, pois ela foi declarada dentro desse escopo que eu estou chamando ela.
+  // funcao2(); // não é possível acessar a essa funcao2, pois ela não foi criada dentro desse escopo que eu estou chamando ela.
+
+  // b = 10; // não é possivel acessar essa variável porque ela não foi criada dentro desse escopo que eu estou tentando acessar.
+}
+
+
+// VARIÁVEIS DINÂMICAS // VARIÁVEIS DINÂMICAS // VARIÁVEIS DINÂMICAS // VARIÁVEIS DINÂMICAS
+// VARIÁVEIS DINÂMICAS // VARIÁVEIS DINÂMICAS // VARIÁVEIS DINÂMICAS // VARIÁVEIS DINÂMICAS
+// VARIÁVEIS DINÂMICAS // VARIÁVEIS DINÂMICAS // VARIÁVEIS DINÂMICAS // VARIÁVEIS DINÂMICAS
+
+void main() {
+  var nome = 'Daniel';
+  // o tipo VAR identifica o tipo de valor que você está atribuindo para aquela variável.
+  nome = 'Ciolfi';
+  // só é possível alterar para o mesmo tipo de variável, que no caso ele identificou como String.
+  var idade = 40;
+  idade++;
+
+  dynamic variavel = 'Daniel';
+  // dynamic é um tipo de variável que aceita qualquer valor, inclusive pode ser alterado de String para Int, Bool, etc...
+  variavel = 3;
+  variavel = true;
+
+  num numero = 1.4;
+  // o tipo num, aceita números do tipo inteiro e decimais. (int e double)
+}
+
+
+// LISTAS // LISTAS // LISTAS // LISTAS // LISTAS // LISTAS // LISTAS // LISTAS
+// LISTAS // LISTAS // LISTAS // LISTAS // LISTAS // LISTAS // LISTAS // LISTAS
+// LISTAS // LISTAS // LISTAS // LISTAS // LISTAS // LISTAS // LISTAS // LISTAS
+
+void main() {
+  List<dynamic> listDynamic = ['Daniel', 'Ciolfi', false, 10, 1.1];
+  //Essa é uma lista dinâmica, que aceita qualquer tipo de dado.
+  List<String> listString = ['Daniel', 'Ciolfi'];
+  // Lista do tipo String, só aceitará valores Strings.
+  print(listDynamic.length);
+  // o atributo .length conta quantos valores tem na lista.
+  print(listDynamic.first); // pega o primeiro valor da lista.
+  print(listDynamic.last); // pega o último valor da lista.
+  print(listDynamic[0]);
+  // pega o valor através da posição, que no caso a primeira posição é 0, e assim por diante.
+  listDynamic = [1, 2, 3];
+  // substituí a lista anterior pelos valores dados agora.
+  print(listDynamic);
+  listDynamic.add(2);
+  // adiciona no final da lista o número 2.
+  print(listDynamic);
+  listDynamic.addAll([5, 6, 7]);
+  // adiciona no final da lista os números inseridos.
+  print(listDynamic);
+}
+
+
+// LEITURA DA DOCUMENTAÇÃO // LEITURA DA DOCUMENTAÇÃO // LEITURA DA DOCUMENTAÇÃO
+// LEITURA DA DOCUMENTAÇÃO // LEITURA DA DOCUMENTAÇÃO // LEITURA DA DOCUMENTAÇÃO
+// LEITURA DA DOCUMENTAÇÃO // LEITURA DA DOCUMENTAÇÃO // LEITURA DA DOCUMENTAÇÃO
+
+// FUNÇÕES DE LISTAS // FUNÇÕES DE LISTAS // FUNÇÕES DE LISTAS // FUNÇÕES DE LISTAS
+// FUNÇÕES DE LISTAS // FUNÇÕES DE LISTAS // FUNÇÕES DE LISTAS // FUNÇÕES DE LISTAS
+// FUNÇÕES DE LISTAS // FUNÇÕES DE LISTAS // FUNÇÕES DE LISTAS // FUNÇÕES DE LISTAS
+
+void main() {
+  List<int> idades = [1, 2, 4, 55, 33, 44, 22, 11, 23];
+
+  print(idades.length);
+  print(idades.first);
+  print(idades.last);
+  print(idades[3]);
+
+  idades.add(99);
+  idades.add(466);
+
+  List<int> outrasIdades = [567, 25, 4634];
+
+  idades.addAll(outrasIdades);
+  //ou pode fazer do jeito abaixo que é menos útil.
+  idades.addAll([32, 23, 45, 66, 77]);
+  print(idades);
+
+  idades.insert(0, -2);
+  // inseri na posição 0 o valor -2 na lista idades.
+  print(idades);
+  print(idades.contains(44));
+  // imprime true se o número 44 constar na lista, ou false se não constar.
+  print(idades.indexOf(44));
+  // imprime a posição(index) do valor pesquisado.
+  print(idades.remove(33));
+  // vai remover da lista idades o número 33 e retornar o valor true do print.
+  print(idades);
+  print(idades.removeAt(3));
+  // remove o valor na posição 3, e retorna na tela o valor que foi removido;
+  idades.shuffle(); // mistura aleatoriamente os valores da lista.
+  print(idades);
+  idades.clear(); // limpa a lista por completo.
+}
+
+
+// ITERAÇÃO DA LISTA // ITERAÇÃO DA LISTA // ITERAÇÃO DA LISTA // ITERAÇÃO DA LISTA // ITERAÇÃO DA LISTA
+// ITERAÇÃO DA LISTA // ITERAÇÃO DA LISTA // ITERAÇÃO DA LISTA // ITERAÇÃO DA LISTA // ITERAÇÃO DA LISTA
+// ITERAÇÃO DA LISTA // ITERAÇÃO DA LISTA // ITERAÇÃO DA LISTA // ITERAÇÃO DA LISTA // ITERAÇÃO DA LISTA
+
+void main() {
+  List<String> nomes = [
+    'Daniel',
+    'Ciolfi',
+    'Henrique',
+    'Giovana',
+    'Marcos',
+    'Eliane',
+    'Mariane'
+  ];
+  print(nomes);
+  print('\n');
+  // for (int i = 0; i < nomes.length; i++) {
+  //   print(nomes[i].toUpperCase());
+  // } // Enquanto i for menor que o (total de valores na lista nomes), i + 1
+  // imprime o valor da lista nome na posição i em letras MAIÚSCULAS.
+
+  for (String nome in nomes) {
+    print(nome.toUpperCase());
+  } // RECOMENDADA. a variável nome, assume cada valor da lista nomes, então vai imprimir cada valor da lista em letra maiúscula.
+  print('\n');
+
+  nomes.forEach((nome) {
+    print(nome.toUpperCase());
+  }); // semelhante ao de cima, pega todos os valores da lista nome, coloca na variável nome, e depois imprime com o método .toUpperCase
+  print('\n');
+
+  nomes.sublist(2, 4).forEach((nome) {
+    print(nome.toUpperCase());
+  }); // semelhante ao de cima, pega todos os valores da lista nomes, coloca na variável nome, e depois imprime com o método .toUpperCase (porém começa da posição 2 e termina na 4)
+}
+
+
+// OUTRAS FUNÇÕES DA LISTA // OUTRAS FUNÇÕES DA LISTA // OUTRAS FUNÇÕES DA LISTA // OUTRAS FUNÇÕES DA LISTA
+// OUTRAS FUNÇÕES DA LISTA // OUTRAS FUNÇÕES DA LISTA // OUTRAS FUNÇÕES DA LISTA // OUTRAS FUNÇÕES DA LISTA
+// OUTRAS FUNÇÕES DA LISTA // OUTRAS FUNÇÕES DA LISTA // OUTRAS FUNÇÕES DA LISTA // OUTRAS FUNÇÕES DA LISTA
+
+void main() {
+  List<int> maluca = List.filled(100, 8);
+  // o método List.filled repete 100 vezes o valor desejado.
+  print(maluca);
+
+  List<int> doida = List.generate(5, funcao);
+  // o método List.generate repete 5 vezes o resultado da função.
+  print(doida);
+
+  List<int> doida2 = List.generate(10, (i) => i * 10);
+  // o método List.generate repete 10 vezes, o resultado da equação ao lado, o valor de i começa com 0 e termina em 9, isso depende do tanto de vezes que você coloca para repetir.
+  print(doida2);
+  print(doida2.isEmpty);
+  // retorna true se a lista estiver vazia.
+  print(doida2.isNotEmpty);
+  // retorna true se a lista não estiver vazia.
+  doida2.removeAt(0);
+  print(doida2.any((i) => i % 33 == 0));
+  // pega todos os valores da lista, e verifica se são divisíveis por 33, se algum numero for, retorna true, se não, retorna false.
+  print(doida2.firstWhere((i) => i % 40 == 0));
+  // retorna o primeiro número divisível por 40.
+  print(doida2.lastWhere((i) => i % 40 == 0));
+  // retorna o último número divisível por 40.
+  print(doida2.where((i) => i % 40 == 0));
+  // retorna todos os números que são divisíveis por 40.
+  print(doida2.map((i) => i + 1));
+  // pega cada valor da lista e soma + 1... e a lista fica com esse novo valor, pode ser utilizado qualquer outra lógica para criar a lista nova...
+}
+
+int funcao(int pos) {
+  return pos * 10;
+  // a variável pos, vai aumentando de 1 em 1 referente ao tanto de vezes que foi solicitada para repetir * List<int> doida = List.generate(5, funcao); * neste caso foram 5 vezes, ou seja, pos valerá 0,1,2,3,4...
+}
+
+
+// LISTAS NO NULL-SAFETY // LISTAS NO NULL-SAFETY // LISTAS NO NULL-SAFETY // LISTAS NO NULL-SAFETY
+// LISTAS NO NULL-SAFETY // LISTAS NO NULL-SAFETY // LISTAS NO NULL-SAFETY // LISTAS NO NULL-SAFETY
+// LISTAS NO NULL-SAFETY // LISTAS NO NULL-SAFETY // LISTAS NO NULL-SAFETY // LISTAS NO NULL-SAFETY
+
+void main() {
+  List<String?> lista0 = [
+    'Daniel',
+    null,
+    'Ciolfi',
+    null
+  ]; // aceita valores nulos.
+  print(lista0);
+
+  List<String>? lista2;
+  // com o ? do lado de fora dos <> quer dizer que a lista é nula, ou seja, ela não existe ainda, então não é possível por exemplo, utilizar o método lista2.add('Qualquer valor')
+  if (lista2 != null) {
+    lista2.add('Ciolfi');
+  }
+
+  List<String> lista1 = []; // aqui eu declaro que a lista existe, porém vazia.
+  lista1.add('Daniel'); // adicionando um valor a minha lista.
+  print(lista1);
+
+  List<String?>? lista3;
+  // o ? dentro dos <> diz que a lista pode receber valores nulos, e o ? fora do <> diz que a lista pode ser nula.
+  if (lista3 != null) {
+    // aqui só executaria, se a lista tivesse sido criada, mas como não foi, esse if é falso e não é executado.
+    lista3.add(null);
+    lista3.add('Qualquer valor');
+    print(lista3);
+  }
+}
+
+
+// MAPAS // MAPAS // MAPAS // MAPAS // MAPAS // MAPAS // MAPAS // MAPAS // MAPAS // MAPAS // MAPAS
+// MAPAS // MAPAS // MAPAS // MAPAS // MAPAS // MAPAS // MAPAS // MAPAS // MAPAS // MAPAS // MAPAS
+// MAPAS // MAPAS // MAPAS // MAPAS // MAPAS // MAPAS // MAPAS // MAPAS // MAPAS // MAPAS // MAPAS
+
+void main() {
+  Map<int, String?> ddds = {
+    // O mapa recebe uma chave e um valor, a chave aqui é do tipo INT pois são os DDDs, e o valor é uma String pois são as cidades, como tem ? dentro de <> aceita valores nulos nas cidades, nas chaves não.
+    11: 'São Paulo',
+    19: 'Campinas',
+    41: 'Curitiba',
+    49: null,
+  };
+  print(ddds[19]); // imprime o valor da chave 19.
+
+  String? cidade = ddds[11];
+  // cidade recebe o valor do DDD 11 que no caso é São Paulo.
+  print(cidade); // imprime São Paulo.
+
+  print(ddds.length); // conta quantas chaves possuem na lista.
+
+  ddds[61] = 'Brasilia';
+  // atribui a chave 61 com o valor 'Brasilia' no final mapa ddds.
+  print(ddds);
+
+  ddds.remove(49); // remove a chave 49 e o valor dela do mapa ddds.
+  print(ddds);
+
+  print(ddds.values); // imprime somente os valores do map ddds.
+  print(ddds.keys); // imprime somente as chaves do map ddds.
+  print(ddds.containsKey(50));
+  // verifica se consta a chave 50 no map ddds, retorna true ou false.
+  print(ddds.containsValue('Brasilia'));
+  // verifica se consta o valor Brasilia no map ddds, retorna true ou false.
+  print(ddds.isEmpty);
+  // verifica se a lista esta vazia e retorna true ou false.
+
+  ddds.forEach((key, value) {
+    print('Key $key Value $value');
+    // pega cada chave e valor e imprime uma por uma.
+  });
+
+  //ddds.clear(); // limpa todo o mapa
+
+  ddds.addAll({90: 'Cidade Legal', 91: 'Cidade Chata'});
+  // adiciona no final do mapa, as chaves com seus respectivos valores.
+  print(ddds);
+
+  ddds.removeWhere((key, value) => key > 20);
+  // remove chave e valor, onde as chaves forem maiores que 20.
+  print(ddds);
+
+  String cidade1 = ddds[11]!;
+  // ! serve para dizer que ddds[11] não é nulo, só devo usar ! se eu tiver certeza que ddds[11] não é null, caso contrário uso IF ou ??
+  print(cidade1.toUpperCase());
+}
+
+
+// MAPAS NO NULL-SAFETY // MAPAS NO NULL-SAFETY // MAPAS NO NULL-SAFETY // MAPAS NO NULL-SAFETY // MAPAS NO NULL-SAFETY // MAPAS NO NULL-SAFETY
+// MAPAS NO NULL-SAFETY // MAPAS NO NULL-SAFETY // MAPAS NO NULL-SAFETY // MAPAS NO NULL-SAFETY // MAPAS NO NULL-SAFETY // MAPAS NO NULL-SAFETY
+// MAPAS NO NULL-SAFETY // MAPAS NO NULL-SAFETY // MAPAS NO NULL-SAFETY // MAPAS NO NULL-SAFETY // MAPAS NO NULL-SAFETY // MAPAS NO NULL-SAFETY
+
+void main() {
+  Map<int, String?>?
+      ddds2; // <?>? O mapa é nullo, ainda não existe, posso crialo quando eu quiser, e quando criado, pode receber valores nullos.
+
+  ddds2 = {
+    11: 'São Paulo',
+    19: 'Campinas',
+    41: 'Curitiba',
+    50: null,
+  }; // criei o mapa ddds2
+
+  if (ddds2 != null) {
+    // só irá remover, se o mapa já tiver sido criado.
+    ddds2.remove(11);
+    print(ddds2);
+  }
+}
+
+
+// FUNÇÃO ENTRIES NO MAPA  // FUNÇÃO ENTRIES NO MAPA  // FUNÇÃO ENTRIES NO MAPA  // FUNÇÃO ENTRIES NO MAPA  // FUNÇÃO ENTRIES NO MAPA  // FUNÇÃO ENTRIES NO MAPA  // FUNÇÃO ENTRIES NO MAPA  // FUNÇÃO ENTRIES NO MAPA  // FUNÇÃO ENTRIES NO MAPA  // FUNÇÃO ENTRIES NO MAPA  // FUNÇÃO ENTRIES NO MAPA  // FUNÇÃO ENTRIES NO MAPA  // FUNÇÃO ENTRIES NO MAPA  // FUNÇÃO ENTRIES NO MAPA  // FUNÇÃO ENTRIES NO MAPA  // 
+
+void main() {
+  Map<String, String> comentarios = Map<String, String>();
+  comentarios["Java"] = "Comentario Java";
+  comentarios["Dart"] = "Comentario Dart";
+  comentarios["C#"] = "Comentario C#";
+
+// cria um objeto para cada chave do mapa e coloca em uma lista...
+  for (var entry in comentarios.entries) {
+    print(entry);
+  }
+}
+
+
+// JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON
+//// JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON
+///// JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON // JSON
+
+import 'dart:convert'; //importando bliblioteca de conversao.
+
+void main() {
+  Map<String, dynamic> dados = json.decode(dadosDoUsuario());
+  // Crio um mapa normal, a diferença é que ele recebe o valor de dadosDoUsuario() que é uma grande String, e o recurso json.decode, decodifica essa String para o meu mapa dados, sendo assim eu consigo fazer o acesso normal de um mapa.
+  print(dados);
+  print(dados['nome']);
+  print(dados['idade']);
+  print(dados['sobrenome']);
+  print(dados['endereco']['cidade']);
+  print(dados['endereco']['numero']);
+  print(dados['cursos'][0]['dificuldade']);
+}
+
+String dadosDoUsuario() {
+  // exemplo de um retorno de uma string de um servidor.
+  return """
+   {
+   "nome": "Daniel Henrique",
+   "sobrenome": "Ciolfi",
+   "idade": 50,
+   "casado": false,
+   "altura": 1.82,
+   "cursos": [
+     {
+       "nome": "Dart",
+       "dificuldade": 2
+     },
+     {
+       "nome": "Flutter",
+       "dificuldade": 2
+     },
+     "Python"
+   ],
+   "endereco": {
+     "cidade": "Campinas",
+     "pais": "Brasil",
+     "numero": 100
+   }
+ }
+ """;
+}
+
+
+//EXCEPTIONS E TRY/CATCH //EXCEPTIONS E TRY/CATCH //EXCEPTIONS E TRY/CATCH //EXCEPTIONS E TRY/CATCH //EXCEPTIONS E TRY/CATCH
+//EXCEPTIONS E TRY/CATCH //EXCEPTIONS E TRY/CATCH //EXCEPTIONS E TRY/CATCH //EXCEPTIONS E TRY/CATCH //EXCEPTIONS E TRY/CATCH
+//EXCEPTIONS E TRY/CATCH //EXCEPTIONS E TRY/CATCH //EXCEPTIONS E TRY/CATCH //EXCEPTIONS E TRY/CATCH //EXCEPTIONS E TRY/CATCH
+
+void main() {
+  // tentar fazer o programa rodar por todas as instruções.
+  try {
+    // try quer dizer que vai tentar executar o código abaixo.
+    int resultado = 100 ~/ 2;
+    print(resultado);
+
+    double? valor = double.parse('50.2a');
+    // a variável valor do tipo double? irá tentar receber a String '50.2a' e converter para double, se não conseguir, valor recebe null.
+    print(valor);
+  } on UnsupportedError {
+    // on UnsupportedError, aqui ele diz que se o erro do try, for do tipo UnsupportedError, ele executará o que estiver dentro desses {}.
+    print('Caiu aqui!');
+  } on FormatException catch (e) {
+    // se o erro do try, for do tipo FormatException, ele executará o que estiver dentro das {}, o catch (e) serve para trazer as informações do erro.
+    print('Caiu no erro -> ${e.message}');
+    print('Caiu no erro -> $e');
+  } catch (e) {
+    // se der algum tipo de erro no código do try e não for nenhum erro que esteja em algum ON, ele executará o catch, se o erro for simples, o código do try vai funcionar mesmo com erro.
+    print(e.runtimeType); // imprime o tipo de erro que deu no try
+  } finally {
+    // será executado independente se der erro ou não.
+    print('Final 22');
+  }
+}
+
+
+// EXCEPTIONS PERSONALIZADAS // EXCEPTIONS PERSONALIZADAS // EXCEPTIONS PERSONALIZADAS // EXCEPTIONS PERSONALIZADAS
+// EXCEPTIONS PERSONALIZADAS // EXCEPTIONS PERSONALIZADAS // EXCEPTIONS PERSONALIZADAS // EXCEPTIONS PERSONALIZADAS
+// EXCEPTIONS PERSONALIZADAS // EXCEPTIONS PERSONALIZADAS // EXCEPTIONS PERSONALIZADAS // EXCEPTIONS PERSONALIZADAS
+
+void main() {
+  try {
+    // vai tentar executar a função teste.
+    teste(-10);
+    // - 10 é o parâmetro que eu passo para a funcao teste, ou seja x recebe -10.
+  } on VoceEstaFazendoBesteira {
+    // se o erro for do tipo VoceEstaFazendoBesteira, ele executará o código abaixo.
+    print('Besteira!');
+  } catch (e) {
+    print(e);
+  }
+}
+
+void teste(int x) {
+  if (x <= 0) {
+    throw VoceEstaFazendoBesteira();
+    // aqui se x for <= 0, eu jogo a exceção/erro VoceEstaFazendoBesteira.
+  }
+  print(x);
+}
+
+class VoceEstaFazendoBesteira implements Exception {
+  // criei a class VoceEstaFazendoBesteira extendendo Exception, ou seja, qualquer função que tenha ( throw VoceEstaFazendoBesteira(); ) e der erro de excessão, essa classe que representará a excessão.
+  @override
+  String toString() {
+    // essa será a mensagem para a excessão VoceEstaFazendoBesteira
+    return 'Você não pode passar um valor menor ou igual a 0';
+  }
+}
+
+
+// ENUMERADORES // ENUMERADORES // ENUMERADORES // ENUMERADORES // ENUMERADORES // ENUMERADORES // ENUMERADORES
+// ENUMERADORES // ENUMERADORES // ENUMERADORES // ENUMERADORES // ENUMERADORES // ENUMERADORES // ENUMERADORES
+// ENUMERADORES // ENUMERADORES // ENUMERADORES // ENUMERADORES // ENUMERADORES // ENUMERADORES // ENUMERADORES
+
+// enum StatusPagamento {
+//   pendente,
+//   pago,
+//   reembolsado
+// } // quando declarar um enumerador, não colocar ; no final
+
+// void main() {
+//   StatusPagamento status = StatusPagamento.pago;
+//   // a variável status é do tipo Enumerador, ou seja, só receberá os valores que eu especifiquei e mais nenhum outro.
+//   print(status);
+
+//   switch (status) {
+//     // ALT + ENTER (EM CIMA DO SWITCH) + ADD MISSING CASE CLAUSES, ele cria todos os CASES para as possibilidades de pagamento, no caso as possibilidades da variável status.
+//     case StatusPagamento.pendente:
+//       print('PENDENTE');
+//       break;
+//     case StatusPagamento.pago:
+//       print('PAGO');
+//       break;
+//     case StatusPagamento.reembolsado:
+//       print('REEMBOLSADO');
+//       break;
+//   }
+
+//   print(status.index);
+//   // isso converte o valor do meu enumerador dentro da variável status para o índice dele, nesse caso PAGO está na posição 1.
+//   print(StatusPagamento.values[1]);
+//   // aqui ele trás o valor do enumerador StatusPagamento através da posição, ou seja, a posição 1 é a do PAGO.
+// }
+
+// FINAL X CONST // FINAL X CONST // FINAL X CONST // FINAL X CONST // FINAL X CONST // FINAL X CONST // FINAL X CONST
+// FINAL X CONST // FINAL X CONST // FINAL X CONST // FINAL X CONST // FINAL X CONST // FINAL X CONST // FINAL X CONST
+// FINAL X CONST // FINAL X CONST // FINAL X CONST // FINAL X CONST // FINAL X CONST // FINAL X CONST // FINAL X CONST
+
+void main() {
+  // CONST.
+  const nome = 'Daniel';
+  // no caso a constante nome, sempre será Daniel, e não poderá ser trocada nunca, como nunca muda, não é necessário declarar o tipo, pois o Dart entende qual é o tipo.
+  const idade = 50;
+  const lista = ['Daniel', 'Ciolfi'];
+  // o mesmo funciona para lista e map, após declarado o valor, não é possível alterá-lo de maneira alguma.
+
+  // FINAL
+  final DateTime agora = DateTime.now();
+  //Final funciona em tempo de execução, ou seja, quando o código estiver rodando e chegar nessa parte, e a variávle receber o valor, não poderá mais ser alterada.
+  final String sobrenome;
+  // no final eu posso atribuir depois um valor para a variável sobrenome, porém após atribuir o valor ela não pode mais ser alterada.
+  if (nome == 'Daniel') {
+    sobrenome = 'Ciolfi';
+  } else {
+    sobrenome = 'Não sei';
+  }
+  print(sobrenome);
+}
+
+
+// OPERADORES CASCATA // OPERADORES CASCATA // OPERADORES CASCATA // OPERADORES CASCATA // OPERADORES CASCATA
+// OPERADORES CASCATA // OPERADORES CASCATA // OPERADORES CASCATA // OPERADORES CASCATA // OPERADORES CASCATA
+// OPERADORES CASCATA // OPERADORES CASCATA // OPERADORES CASCATA // OPERADORES CASCATA // OPERADORES CASCATA
+
+void main() {
+  List<String> nomes = [];
+
+  nomes
+    ..add('Daniel')
+    ..add('Ciolfi')
+    ..remove('Daniel');
+
+  print(nomes);
+}
+
+List<String> funcao(List<String> lista) {
+  return lista
+    ..add('Daniel')
+    ..add('Ciolfi')
+    ..remove('Daniel');
+}
+
+// CLASSES, OBJETOS E ATRIBUTOS // CLASSES, OBJETOS E ATRIBUTOS // CLASSES, OBJETOS E ATRIBUTOS // CLASSES, OBJETOS E ATRIBUTOS
+// CLASSES, OBJETOS E ATRIBUTOS // CLASSES, OBJETOS E ATRIBUTOS // CLASSES, OBJETOS E ATRIBUTOS // CLASSES, OBJETOS E ATRIBUTOS
+// CLASSES, OBJETOS E ATRIBUTOS // CLASSES, OBJETOS E ATRIBUTOS // CLASSES, OBJETOS E ATRIBUTOS // CLASSES, OBJETOS E ATRIBUTOS
+
+void main() {
+  Pessoa pessoa1 = Pessoa();
+  // criei o objeto pessoa1, do tipo Pessoa (só aceita os atributos da classe Pessoa), e instanciei a classe Pessoa();
+  pessoa1.nome = 'Daniel'; // nome do objeto (pessoa1) agora é 'Daniel'.
+  pessoa1.trocarNome('Henrique');
+  // usando o método trocarNome, ele altera o nome do objeto pessoa1.
+  pessoa1.idade = 40;
+  print(pessoa1.nome);
+  print(pessoa1.idade);
+
+  print(pessoa1.aniversario()); // imprimi / chamei o método aniversário
+
+  print(pessoa1.casar()); // imprimi / chamei o método casar.
+
+  Pessoa pessoa2 = Pessoa();
+  // aqui criei outro objeto e instanciei a mesma classe.
+  pessoa2.nome = 'Ciolfi'; // nome do objeto (pessoa2) agora é 'Ciolfi'.
+  pessoa2.idade = 30;
+  pessoa2.casado = true;
+  print(pessoa2.casado);
+  print(pessoa2.nome);
+  print(pessoa2.idade);
+
+  print(pessoa2.aniversario());
+}
+
+class Pessoa {
+  //  criei a classe Pessoa
+  String? nome; // nome, idade e casado são atributos, e não variáveis normais.
+  int? idade;
+  bool casado = false;
+
+  int? aniversario() {
+    // criei o método aniversário
+    print('Parabéns! $nome');
+    if (idade != null) {
+      idade = idade! + 1;
+    }
+    return idade; // retorna o valor da idade.
+  }
+
+  bool casar() {
+    casado = true;
+    return casado;
+  }
+
+  void trocarNome(String n) {
+    nome = n;
+  }
+}
+
+
+// CONSTRUTORES E CONSTRUTORES NOMEADOS // CONSTRUTORES E CONSTRUTORES NOMEADOS // CONSTRUTORES E CONSTRUTORES NOMEADOS
+// CONSTRUTORES E CONSTRUTORES NOMEADOS // CONSTRUTORES E CONSTRUTORES NOMEADOS // CONSTRUTORES E CONSTRUTORES NOMEADOS
+// CONSTRUTORES E CONSTRUTORES NOMEADOS // CONSTRUTORES E CONSTRUTORES NOMEADOS // CONSTRUTORES E CONSTRUTORES NOMEADOS
+
+void main() {
+  Pessoa pessoa1 = Pessoa.solteira(nome: 'Daniel', idade: 40);
+  // após criar o construtor, e declarar obrigatório esses parâmetros,
+  // eu passo ele assim que instancio a classe.
+  print(pessoa1.nome);
+  print(pessoa1.idade);
+  print(pessoa1.aniversario());
+  print(pessoa1.casar());
+
+  Pessoa pessoa2 = Pessoa.casada(nome: 'Ciolfi', idade: 30);
+  print(pessoa2.casado);
+  print(pessoa2.nome);
+  print(pessoa2.idade);
+  print(pessoa2.aniversario());
+}
+
+class Pessoa {
+  String nome;
+  int idade;
+  bool casado;
+
+  Pessoa({required this.nome, required this.idade, this.casado = false}) {
+    print('Criando o $nome com idade $idade');
+  } // Isso é um construtor, e agora ele me obriga a passar por parâmetro, o nome e a idade do objeto assim que instancio.
+
+  Pessoa.casada({required this.nome, required this.idade, this.casado = true});
+  // Construtor nomeado, porém o atributo casado recebe como default true, ou sejá é casado, então esse método eu uso para o objeto que for casado.
+
+  Pessoa.solteira(
+      {required this.nome, required this.idade, this.casado = false});
+  // Construtor nomeado, porém o atributo casado recebe como default false, ou sejá é solteiro(a), então esse método eu uso para o objeto que for solteiro(a).
+
+  int? aniversario() {
+    print('Parabéns! $nome');
+    idade++;
+    return idade;
+  }
+
+  bool casar() {
+    casado = true;
+    return casado;
+  }
+}
+
+
+// PROGRAMA CRIADO POR RENATO // PROGRAMA CRIADO POR RENATO // PROGRAMA CRIADO POR RENATO
+// PROGRAMA CRIADO POR RENATO // PROGRAMA CRIADO POR RENATO // PROGRAMA CRIADO POR RENATO
+// PROGRAMA CRIADO POR RENATO // PROGRAMA CRIADO POR RENATO // PROGRAMA CRIADO POR RENATO
+
+// void main() {
+//   Casa casa1 = Casa.padrao(cor: 'amarela', preco: 2.50, vendida: true);
+//   {
+//     print('\n');
+//   }
+
+//   Casa casa2 = Casa.preco(cor: 'Azul', vendida: false);
+//   {
+//     print('\n');
+//   }
+
+//   Casa casa3 = Casa.vendida(cor: 'Verde', preco: 10.30);
+//   {
+//     print('\n');
+//   }
+// }
+
+// class Casa {
+//   // ATRIBUTOS
+//   bool banheiro;
+//   bool sala;
+//   bool cozinha;
+//   String cor;
+//   double preco;
+//   bool vendida;
+
+//   // CONSTRUTORES NOMEADOS
+//   Casa.padrao(
+//       {required this.cor,
+//       required this.preco,
+//       required this.vendida,
+//       this.banheiro = true,
+//       this.sala = true,
+//       this.cozinha = true}) {
+//     print('PADRÃO + $cor, $preco, $vendida');
+//   }
+
+//   Casa.cor(
+//       {this.cor = 'amarela',
+//       required this.preco,
+//       required this.vendida,
+//       this.banheiro = true,
+//       this.sala = true,
+//       this.cozinha = true}) {
+//     print('Casa amarela + $preco, $vendida, + PADRÃO');
+//   }
+
+//   Casa.preco(
+//       {required this.cor,
+//       this.preco = 51.50,
+//       required this.vendida,
+//       this.banheiro = true,
+//       this.sala = true,
+//       this.cozinha = true}) {
+//     print('Casa de 51.50, $cor, $vendida, + PADRÃO');
+//   }
+
+//   Casa.vendida(
+//       {required this.cor,
+//       required this.preco,
+//       this.vendida = true,
+//       this.banheiro = true,
+//       this.sala = true,
+//       this.cozinha = true}) {
+//     print('Casa vendida, $cor, $preco, + PADRÃO');
+//   }
+//   //COM OS CONSTRUTORES NOMEADOS, EU CRIO O OBJETO E PADRONIZO OS ATRIBUTOS QUE NÃO IRÃO MUDAR, E COLOCO REQUIRED NOS QUE PRECISAM DE VALORES.
+// }
+
+// GETTERS E SETTERS // GETTERS E SETTERS // GETTERS E SETTERS // GETTERS E SETTERS // GETTERS E SETTERS // GETTERS E SETTERS // GETTERS E SETTERS
+// GETTERS E SETTERS // GETTERS E SETTERS // GETTERS E SETTERS // GETTERS E SETTERS // GETTERS E SETTERS // GETTERS E SETTERS // GETTERS E SETTERS
+// GETTERS E SETTERS // GETTERS E SETTERS // GETTERS E SETTERS // GETTERS E SETTERS // GETTERS E SETTERS // GETTERS E SETTERS // GETTERS E SETTERS
+
+void main() {
+  Pessoa pessoa1 = Pessoa(nome: 'Daniel', idade: 40);
+  Pessoa pessoa2 = Pessoa(nome: 'Ciolfi', idade: 30);
+
+  pessoa1.dinheiro = 300;
+  // (SETTER) a variável dinheiro aqui é usada no setter (lá em baixo) para setar um valor no atributo privado _dinheiro.
+  pessoa2.dinheiro = 10000;
+  // (GETTER )a variável dinheiro aqui é usada no setter (lá em baixo) para setar um valor no atributo privado _dinheiro.
+
+  print(pessoa1.dinheiro); // print está funcionando por conta do getter(get)
+  print(pessoa2.dinheiro);
+}
+
+class Pessoa {
+  Pessoa({required this.nome, required this.idade, this.casado = false}) {
+    print('Criando o $nome com idade $idade');
+    // imrpime para todos os objetos instânciados.
+  }
+
+  String nome;
+  int idade;
+  bool casado;
+
+  double? _dinheiro; // _ esse atributo agora é privado.
+
+  set dinheiro(double? valor)
+  // a função dinheiro está recebendo a variável valor como parâmetro
+  {
+    // isso é um Setter, serve para modificar um atributo que esteja privado e você queira realizar uma validação ou outra ação.
+    if (valor != null && valor >= 0 && valor < 1000) {
+      print('Modificando dinheiro do $nome');
+      _dinheiro = valor; // o objeto que for aceito no if, receberá _dinheiro
+    }
+  }
+
+  double? get dinheiro {
+    // serve para ler um valor diretamente em um local.
+    print('Lendo dinheiro do $nome');
+    return _dinheiro;
+  }
+}
+
+
+// ATRIBUTOS NULLABLE // ATRIBUTOS NULLABLE // ATRIBUTOS NULLABLE // ATRIBUTOS NULLABLE // ATRIBUTOS NULLABLE // ATRIBUTOS NULLABLE
+// ATRIBUTOS NULLABLE // ATRIBUTOS NULLABLE // ATRIBUTOS NULLABLE // ATRIBUTOS NULLABLE // ATRIBUTOS NULLABLE // ATRIBUTOS NULLABLE
+// ATRIBUTOS NULLABLE // ATRIBUTOS NULLABLE // ATRIBUTOS NULLABLE // ATRIBUTOS NULLABLE // ATRIBUTOS NULLABLE // ATRIBUTOS NULLABLE
+
+void main() {
+  Pessoa pessoa1 = Pessoa(nome: 'Daniel', idade: 40);
+  Pessoa pessoa2 = Pessoa(nome: 'Ciolfi', idade: 30);
+
+  String? nome = pessoa1.nomeSecreto;
+  // após eu ler pessoa1.nomeSecreto; , o get transformou ele em null, por isso eu tenho que atribuir o valor dele a variável nome, para conseguir ler novamente porém em uma variável.
+  if (nome != null) {
+    print(nome.toUpperCase());
+  }
+
+  print(pessoa1.nomeSecreto);
+  // após ler uma vez o nomeSecreto, o get transformou ele em null.
+
+  if (pessoa1.atributo != null) {
+    print(pessoa1.atributo!.toUpperCase());
+    // o ! diz que o atributo atributo não é null.
+  }
+}
+
+class Pessoa {
+  Pessoa({required this.nome, required this.idade, this.casado = false}) {
+    print('Criando o $nome com idade $idade');
+  }
+
+  String nome;
+  int idade;
+  bool casado;
+  String? _nomeSecreto = 'Flutter';
+
+  String? atributo = 'Olá';
+
+  get nomeSecreto {
+    // esse get só permite ler o atributo uma vez, e depois ele passa a ser null.
+    String? nome = _nomeSecreto;
+    if (nome != null) {
+      _nomeSecreto = null;
+      return nome;
+    } else {
+      return null;
+    }
+  }
+}
+
+
+// MODIFICADOR STATIC // MODIFICADOR STATIC // MODIFICADOR STATIC // MODIFICADOR STATIC // MODIFICADOR STATIC
+// MODIFICADOR STATIC // MODIFICADOR STATIC // MODIFICADOR STATIC // MODIFICADOR STATIC // MODIFICADOR STATIC
+// MODIFICADOR STATIC // MODIFICADOR STATIC // MODIFICADOR STATIC // MODIFICADOR STATIC // MODIFICADOR STATIC
+
+void main() {
+  Pessoa.alturaPadrao = 1.80;
+
+  Pessoa pessoa1 = Pessoa(nome: 'Daniel', idade: 40);
+  print(pessoa1.nome);
+  print(pessoa1.idade);
+  print(pessoa1.altura);
+  pessoa1.comer();
+
+  Pessoa.atributoStatic = ', Daniel';
+  print(Pessoa.atributoStatic);
+  print(Pessoa.metodoStatic());
+}
+
+class Pessoa {
+  Pessoa(
+      {required this.nome,
+      required this.idade}); // coloquei como obrigatório (required) os atributos nome e idade
+
+  String nome; // atributos
+  int idade;
+  double altura = alturaPadrao;
+
+  void comer() {
+    // método
+    print('Comendo...');
+  }
+
+  static String atributoStatic = 'abc';
+  // esse atributo pertence a classe Pessoa, e não ao objeto igual os anteriores
+  static String metodoStatic() {
+    // esse método pertence a classe Pessoa, é possível ler um atributo static nele também
+    return 'Olá mundo $atributoStatic';
+  }
+
+  static double alturaPadrao = 0;
+  // atributo static, é útil quando eu preciso configurar coisas (atributos) padrões, pois quando eu seto ele antes de criar um objeto, quando eu criar o objeto, o objeto já virá com alguns atributos padrões.
+}
+
+
+// MODIFICADOR LATE // MODIFICADOR LATE // MODIFICADOR LATE // MODIFICADOR LATE // MODIFICADOR LATE // MODIFICADOR LATE
+// MODIFICADOR LATE // MODIFICADOR LATE // MODIFICADOR LATE // MODIFICADOR LATE // MODIFICADOR LATE // MODIFICADOR LATE
+// MODIFICADOR LATE // MODIFICADOR LATE // MODIFICADOR LATE // MODIFICADOR LATE // MODIFICADOR LATE // MODIFICADOR LATE
+
+void main() {
+  Pessoa pessoa1 = Pessoa(nome: 'Daniel', idade: 40);
+  {}
+  pessoa1.cpf = '36139891825';
+  print(pessoa1.cpf);
+  print(pessoa1.temperatura);
+  // chamando o atributo temperatura que é late, posso passar o valor quando for usá-lo.
+  print(pessoa1.temperatura);
+  print(pessoa1.temperatura);
+
+  print(pessoa1.temperatura2);
+  // chamando o atributo temperatura2 que é um get, (recomendado quando for ficar mudando o atributo temperatura2, pois ele executa o get por completo toda vez que for chamado, diferente do late que só executa na primeira vez, e nas próximas só usa o valor do atributo.)
+  print(pessoa1.temperatura2);
+  print(pessoa1.temperatura2);
+}
+
+class Pessoa {
+  Pessoa({
+    required this.nome,
+    required this.idade,
+  });
+
+  String nome;
+  int idade;
+  late String cpf;
+  // late quer dizer que esse atributo pode ser inicializado quando eu quiser, porém antes de ele ser utilizado.
+
+  late double temperatura = medirTemperatura();
+  // o atributo temperatura pode receber o valor quando quiser, porém antes de ser utilizado, a diferença de late para o get, é que o get é executado toda vez que for chamado, o late uma só...
+
+  double get temperatura2 => medirTemperatura();
+  // quando o get é chamado lá em cima, ele é executado e coloca o valor no atributo temperatura2, e quando é chamado de novo, coloca de novo o valor no atributo temperatura 2, ou seja ele repete todo o processo ao invés de só usar o valor do atributo.
+
+  double medirTemperatura() {
+    print('Mediu a temperatura');
+    return 37.0;
+  }
+}
+
+
+// OPERADOR ?. // OPERADOR ?. // OPERADOR ?. // OPERADOR ?. // OPERADOR ?. // OPERADOR ?. // OPERADOR ?. // OPERADOR ?. // OPERADOR ?.
+// OPERADOR ?. // OPERADOR ?. // OPERADOR ?. // OPERADOR ?. // OPERADOR ?. // OPERADOR ?. // OPERADOR ?. // OPERADOR ?. // OPERADOR ?.
+// OPERADOR ?. // OPERADOR ?. // OPERADOR ?. // OPERADOR ?. // OPERADOR ?. // OPERADOR ?. // OPERADOR ?. // OPERADOR ?. // OPERADOR ?.
+
+void main() {
+  // Pessoa? pessoa2;
+  Pessoa? pessoa2;
+  // criei o objeto pessoa2 do tipo Pessoa?, ou seja esse objeto pode ser inicializado null.
+
+  print(pessoa2?.idade);
+  // como o objeto é null, qualquer coisa que eu usar ele, me retornará null;
+  print(pessoa2?.cidade?.toUpperCase());
+  pessoa2?.comer();
+}
+
+class Pessoa {
+  Pessoa({
+    required this.nome,
+    required this.idade,
+  });
+
+  String nome;
+  int idade;
+  String? cidade;
+
+  void comer() {
+    print('comendo');
+  }
+}
+
+
+// PASSAGEM DE REFERÊNCIA // PASSAGEM DE REFERÊNCIA // PASSAGEM DE REFERÊNCIA // PASSAGEM DE REFERÊNCIA // PASSAGEM DE REFERÊNCIA
+// PASSAGEM DE REFERÊNCIA // PASSAGEM DE REFERÊNCIA // PASSAGEM DE REFERÊNCIA // PASSAGEM DE REFERÊNCIA // PASSAGEM DE REFERÊNCIA
+// PASSAGEM DE REFERÊNCIA // PASSAGEM DE REFERÊNCIA // PASSAGEM DE REFERÊNCIA // PASSAGEM DE REFERÊNCIA // PASSAGEM DE REFERÊNCIA
+
+void main() {
+  Pessoa pessoa1 = Pessoa(nome: 'Daniel', idade: 40);
+
+  aumentaIdade(pessoa1);
+  // chamei a funcao funcao e passei o objeto pessoa1 como parâmetro.
+  print(pessoa1.idade);
+
+  int numero = 10;
+  funcao2(numero);
+  // chamei a funcao funcao2, e passei por parâmetro a variável numero(que vale 10);
+  print(numero);
+}
+
+void aumentaIdade(Pessoa pessoa) {
+  // essa funcao, faz acrescentar +1 na idade do objeto passado como parâmetro.
+  pessoa.idade++;
+}
+
+void funcao2(int x) {
+  x = 20;
+}
+
+class Pessoa {
+  Pessoa({required this.nome, required this.idade});
+
+  String nome;
+  int idade;
+}
+
+
+// HERANÇA // HERANÇA // HERANÇA // HERANÇA // HERANÇA // HERANÇA // HERANÇA // HERANÇA // HERANÇA // HERANÇA // HERANÇA // HERANÇA
+// VANTAGENS DA HERANÇA // VANTAGENS DA HERANÇA // VANTAGENS DA HERANÇA // VANTAGENS DA HERANÇA // VANTAGENS DA HERANÇA
+// HERANÇA // HERANÇA // HERANÇA // HERANÇA // HERANÇA // HERANÇA // HERANÇA // HERANÇA // HERANÇA // HERANÇA // HERANÇA // HERANÇA
+// VANTAGENS DA HERANÇA // VANTAGENS DA HERANÇA // VANTAGENS DA HERANÇA // VANTAGENS DA HERANÇA // VANTAGENS DA HERANÇA
+
+void main() {
+  Cachorro cachorro1 = Cachorro();
+  cachorro1.nome = 'Rex';
+  cachorro1.idade = 3;
+  cachorro1.comer();
+  cachorro1.dormir();
+  // todos os métodos acima foram extendidos (herança) da classe Animal.
+  cachorro1.latir();
+  // método da classe Cachorro, só pode ser acessado da classe Cachorro.
+
+  Gato gato1 = Gato();
+  gato1.nome = 'Bixano';
+  gato1.idade = 5;
+  gato1.comer();
+  gato1.dormir();
+  // todos os métodos acima foram extendidos (herança) da classe Animal.
+  gato1.miar();
+  // todos os métodos/variáveis abaixo são somente da classe gato, e só podem ser acessador por essa classe.
+  gato1.vidas--;
+  print(gato1.vidas);
+
+  List<Animal> animais = [];
+  // Essa lista aceita qualquer objeto que extenda (herde) a classe animal.
+  animais.add(cachorro1);
+  animais.add(gato1);
+
+  // Animal animal1 = animais.first; // variável animal1 está recebendo o primeiro valor da List<Animal>
+  Animal animal1 = funcao();
+  // animal1 recebe o retorno da função, que é Cachorro.
+  if (animal1 is Cachorro) {
+    // se animal1 for do tipo Cachorro, execute o método abaixo.
+    animal1.latir();
+    // só trás os métodos extendidos (herança da classe Animal) e próprios da classe Cachorro.
+  } else if (animal1 is Gato) {
+    // se não se variável animal1 for do tipo Gato
+    animal1.miar();
+  }
+}
+
+Animal funcao() {
+  return Cachorro();
+}
+
+class Animal {
+  String? nome;
+  int? idade;
+
+  void comer() {
+    print('Comeu');
+  }
+
+  void dormir() {
+    print('Dormiu');
+  }
+}
+
+class Cachorro extends Animal {
+  // aqui eu estou herdando os atributos e métodos da classe Animal, para a classe Cachorro.
+
+  void latir() {
+    print('Au au');
+  }
+}
+
+class Gato extends Animal {
+  // aqui eu estou herdando os atributos e métodos da classe Animal, para a classe Gato.
+
+  int vidas = 7;
+  void miar() {
+    print('Miaaaau');
+  }
+}
+
+
+// REESCRITA DE MÉTODOS // REESCRITA DE MÉTODOS // REESCRITA DE MÉTODOS // REESCRITA DE MÉTODOS
+// REESCRITA DE MÉTODOS // REESCRITA DE MÉTODOS // REESCRITA DE MÉTODOS // REESCRITA DE MÉTODOS
+// REESCRITA DE MÉTODOS // REESCRITA DE MÉTODOS // REESCRITA DE MÉTODOS // REESCRITA DE MÉTODOS
+
+void main() {
+  Cachorro cachorro1 = Cachorro();
+  cachorro1.nome = 'Rex';
+  cachorro1.idade = 3;
+  cachorro1.comer();
+  cachorro1.dormir();
+  // todos os métodos acima foram extendidos (herança) da classe Animal.
+  cachorro1.latir();
+  // método da classe Cachorro, só pode ser acessado da classe Cachorro.
+
+  print(cachorro1);
+  // isso quer dizer que ele sempre irá chamar o método toString, ou seja ficaria assim print(cachorro1.toString());
+
+  Gato gato1 = Gato();
+  gato1.nome = 'Bixano';
+  gato1.idade = 5;
+  gato1.comer();
+  gato1.dormir();
+  // todos os métodos acima foram extendidos (herança) da classe Animal.
+  gato1.miar();
+  // todos os métodos/variáveis abaixo são somente da classe gato, e só podem ser acessador por essa classe.
+  gato1.vidas--;
+  // -- significa subtrair 1.
+  print(gato1.vidas);
+
+  print(gato1);
+  // isso quer dizer que ele sempre irá chamar o método toString, ou seja ficaria assim print(cachorro1.toString());
+}
+
+class Animal {
+  String? nome;
+  int? idade;
+
+  void comer() {
+    print('Comeu');
+  }
+
+  void dormir() {
+    print('Dormiu');
+  }
+
+  @override
+  String toString() {
+    // aqui estou subscrevendo o método toString
+    return 'Nome: $nome Idade $idade';
+  }
+}
+
+class Cachorro extends Animal {
+  // aqui eu estou herdando os atributos e métodos da classe Animal, para a classe Cachorro.
+
+  void latir() {
+    print('Au au');
+  }
+
+  @override
+  //significa que eu estou subscrevendo o método da Super Classe Animal, por esse método abaixo.
+  void dormir() {
+    // devo escrever o método igual ele está na classe Animal
+    print('Dormiu rocando muito!!!');
+    // agora o método dormir do objeto cachorro é este, e não mais o da classe Animal.
+  }
+
+  @override
+  String toString() {
+    // aqui estou subscrevendo o método toString
+    return 'Cachorro - Nome: $nome Idade $idade';
+  }
+}
+
+class Gato extends Animal {
+  // aqui eu estou herdando os atributos e métodos da classe Animal, para a classe Gato.
+
+  int vidas = 7;
+  void miar() {
+    print('Miaaaau');
+  }
+
+  @override
+  String toString() {
+    // aqui estou subscrevendo o método toString
+    return 'Gato - Nome: $nome Idade $idade';
+  }
+}
+
+
+// KEYWORD SUPER
+
+void main() {
+  Cachorro cachorro1 = Cachorro('Rex', 3);
+  print(cachorro1);
+  // isso quer dizer que ele sempre irá chamar o método toString, ou seja ficaria assim print(cachorro1.toString());
+
+  Gato gato1 = Gato('Bixano', 5);
+  print(gato1);
+  // isso quer dizer que ele sempre irá chamar o método toString, ou seja ficaria assim print(cachorro1.toString());
+}
+
+class Animal {
+  Animal(this.nome, this.idade); // construtor
+
+  String nome;
+  int idade;
+
+  void comer() {
+    print('Comeu');
+  }
+
+  void dormir() {
+    print('Dormiu');
+  }
+}
+
+class Cachorro extends Animal {
+  // aqui eu estou herdando os atributos e métodos da classe Animal, para a classe Cachorro.
+
+  // o super é utilizado para acessar os atributos, métodos, construtores, getters e setters que tivermos na nossa Super Classe, que nesse caso é a Class Animal.
+  Cachorro(String nome, int idade) : super(nome, idade)
+  // CONSTRUTOR | aqui ele está acessando o nome e idade da Super Class Animal, e passando os atributos nome e idade para o objeto criado na Classe Cachorro.
+  {
+    print('Criou o cachorro $nome');
+  }
+
+  void latir() {
+    print('Au au');
+  }
+
+  @override //significa que eu estou subscrevendo o método da Super Classe Animal, por esse método abaixo.
+  void dormir() {
+    // devo escrever o método igual ele está na classe Animal
+    super.dormir();
+    // aqui ele está chamando o método original, da super classe Animal, e depois o método subcrevido que é o que está abaixo.
+    print('Rocando muito!!!');
+    // agora o método dormir do objeto cachorro é este, e não mais o da classe Animal.
+  }
+
+  @override
+  String toString() {
+    // aqui estou subscrevendo o método toString
+    return 'Cachorro - Nome: $nome Idade $idade';
+  }
+}
+
+class Gato extends Animal {
+  // aqui eu estou herdando os atributos e métodos da classe Animal, para a classe Gato.
+
+  // o super é utilizado para acessar os atributos, métodos, construtores, getters e setters que tivermos na nossa Super Classe, que nesse caso é a Class Animal.
+  Gato(String nome, int idade) : super(nome, idade)
+  // CONSTRUTOR | aqui ele está acessando o nome e idade da Super Class Animal, e passando os atributos nome e idade para o objeto criado na Classe gato.
+  {
+    print('Criou o cachorro $nome');
+  }
+
+  int vidas = 7;
+  void miar() {
+    print('Miaaaau');
+  }
+
+  @override
+  String toString() {
+    // aqui estou subscrevendo o método toString
+    return 'Gato - Nome: $nome Idade $idade';
+  }
+}
+
+
+// OPERADOR CAST // OPERADOR CAST // OPERADOR CAST // OPERADOR CAST // OPERADOR CAST // OPERADOR CAST // OPERADOR CAST // OPERADOR CAST
+// OPERADOR CAST // OPERADOR CAST // OPERADOR CAST // OPERADOR CAST // OPERADOR CAST // OPERADOR CAST // OPERADOR CAST // OPERADOR CAST
+// OPERADOR CAST // OPERADOR CAST // OPERADOR CAST // OPERADOR CAST // OPERADOR CAST // OPERADOR CAST // OPERADOR CAST // OPERADOR CAST
+
+void main() {
+  Cachorro animal1 = funcao() as Cachorro;
+  // Operador cast é o as.
+  animal1.latir();
+  // esse operador as está fazendo a mesma coisa que o código abaixo.
+
+  //  Animal animal1 = funcao();
+  //   if(animal1 is Cachorro) {
+  //     animal1.latir();
+  //   }
+}
+
+Animal funcao() {
+  return Cachorro('Cat', 7);
+}
+
+class Animal {
+  Animal(this.nome, this.idade); // construtor
+
+  String nome;
+  int idade;
+
+  void comer() {
+    print('Comeu');
+  }
+
+  void dormir() {
+    print('Dormiu');
+  }
+}
+
+class Cachorro extends Animal {
+  Cachorro(String nome, int idade) : super(nome, idade)
+  // aqui ele está acessando o nome e idade da Super Class Animal, e passando os atributos nome e idade para o objeto criado na Classe Cachorro.
+  {
+    print('Criou o cachorro $nome');
+  }
+
+  void latir() {
+    print('Au au');
+  }
+
+  @override
+  void dormir() {
+    // devo escrever o método igual ele está na classe Animal
+    super.dormir();
+    // aqui eles está chamando o método original, da super classe Animal, e depois o método subcrevido que é o que está abaixo.
+    print('Rocando muito!!!');
+    // agora o método dormir do objeto cachorro é este, e não mais o da classe Animal.
+  }
+
+  @override
+  String toString() {
+    // aqui estou subscrevendo o método toString
+    return 'Cachorro - Nome: $nome Idade $idade';
+  }
+}
+
+class Gato extends Animal {
+  // aqui eu estou herdando os atributos e métodos da classe Animal, para a classe Gato.
+
+  // o super é utilizado para acessar os atributos, métodos, construtores, getters e setters que tivermos na nossa Super Classe, que nesse caso é a Class Animal.
+  Gato(String nome, int idade) : super(nome, idade)
+  // aqui ele está acessando o nome e idade da Super Class Animal, e passando os atributos nome e idade para o objeto criado na Classe gato.
+  {
+    print('Criou o cachorro $nome');
+  }
+
+  int vidas = 7;
+  void miar() {
+    print('Miaaaau');
+  }
+
+  @override
+  String toString() {
+    // aqui estou subscrevendo o método toString
+    return 'Gato - Nome: $nome Idade $idade';
+  }
+}
+
+
+// CLASSES ABSTRATAS // CLASSES ABSTRATAS // CLASSES ABSTRATAS // CLASSES ABSTRATAS // CLASSES ABSTRATAS // CLASSES ABSTRATAS // CLASSES ABSTRATAS
+// CLASSES ABSTRATAS // CLASSES ABSTRATAS // CLASSES ABSTRATAS // CLASSES ABSTRATAS // CLASSES ABSTRATAS // CLASSES ABSTRATAS // CLASSES ABSTRATAS
+// CLASSES ABSTRATAS // CLASSES ABSTRATAS // CLASSES ABSTRATAS // CLASSES ABSTRATAS // CLASSES ABSTRATAS // CLASSES ABSTRATAS // CLASSES ABSTRATAS
+
+void main() {
+  Cachorro cachorro1 = Cachorro('Rex', 3);
+  cachorro1.morrer();
+
+  Gato gato1 = Gato('Bixano', 5);
+  gato1.morrer();
+}
+
+abstract class Animal {
+  // tornei a classe abstrata, não posso instanciar essa classe.
+
+  String nome;
+  int idade;
+
+  Animal(this.nome, this.idade);
+  // construtor
+
+  void comer() {
+    print('Comeu');
+  }
+
+  void dormir() {
+    print('Dormiu');
+  }
+
+  void morrer();
+  // quando eu só crio o método, mas não passo nada pra ele, eu tenho que passar ele nas classes.
+
+}
+
+class Cachorro extends Animal {
+  // aqui eu estou herdando os atributos e métodos da classe Animal, para a classe Cachorro.
+
+  // o super é utilizado para acessar os atributos, métodos, construtores, getters e setters que tivermos na nossa Super Classe, que nesse caso é a Class Animal.
+  Cachorro(String nome, int idade) : super(nome, idade)
+  // aqui ele está acessando o nome e idade da Super Class Animal, e passando os atributos nome e idade para o objeto criado na Classe Cachorro.
+  {
+    print('Criou o Cachorro $nome');
+  }
+
+  void latir() {
+    print('Au au');
+  }
+
+  @override
+  void morrer() {
+    print('Muito triste :(');
+    // estou passando esse método aqui, pois na Super Classe eu só criei ele, porém sem nenhuma ação.
+  }
+}
+
+class Gato extends Animal {
+  // aqui eu estou herdando os atributos e métodos da classe Animal, para a classe Gato.
+
+  // o super é utilizado para acessar os atributos, métodos, construtores, getters e setters que tivermos na nossa Super Classe, que nesse caso é a Class Animal.
+  Gato(String nome, int idade) : super(nome, idade)
+  // aqui ele está acessando o nome e idade da Super Class Animal, e passando os atributos nome e idade para o objeto criado na Classe gato.
+  {
+    print('Criou o Gato $nome');
+  }
+
+  int vidas = 7;
+  void miar() {
+    print('Miaaaau');
+  }
+
+  @override
+  void morrer() {
+    vidas--;
+    print('Sobrou $vidas vidas');
+    // estou passando esse método aqui, pois na Super Classe eu só criei ele, porém sem nenhuma ação.
+  }
+}
+
+
+// INTERFACES // INTERFACES // INTERFACES // INTERFACES // INTERFACES // INTERFACES // INTERFACES // INTERFACES // INTERFACES // INTERFACES
+// INTERFACES // INTERFACES // INTERFACES // INTERFACES // INTERFACES // INTERFACES // INTERFACES // INTERFACES // INTERFACES // INTERFACES
+// INTERFACES // INTERFACES // INTERFACES // INTERFACES // INTERFACES // INTERFACES // INTERFACES // INTERFACES // INTERFACES // INTERFACES
+
+void main() {
+  // RepositorioPessoas repo = RepositorioPessoasLocal();
+  RepositorioPessoas repo = RepositorioPessoasRemote();
+  // Posso trocar de instância RepositorioPessoasRemote para RepositorioPessoasLocal, pois é a mesma interface que veio da RepositorioPessoas.
+  repo.ler(10);
+  repo.adicionar('Ciolfi');
+  repo.apagar(5);
+}
+
+abstract class RepositorioPessoas {
+  String ler(int i);
+  void adicionar(String nome);
+  void apagar(int i);
+  void apagarTodos();
+}
+
+class RepositorioPessoasRemote implements RepositorioPessoas {
+  // implements quer dizer que vai usar a mesma interface do RepositorioPessoas.
+  @override // ALT + ENTER EM CIMA DE RepositorioPessoasRemote para criar a mesma interface da Super Classe RepositorioPessoas.
+  void adicionar(String nome) {}
+
+  @override
+  void apagar(int i) {}
+
+  @override
+  String ler(int i) {
+    return 'Ciolfi';
+    throw UnimplementedError();
+  }
+
+  @override
+  void apagarTodos() {}
+}
+
+class RepositorioPessoasLocal implements RepositorioPessoas {
+  // implements quer dizer que vai usar a mesma interface do RepositorioPessoas.
+  @override
+  void adicionar(String nome) {}
+
+  @override
+  void apagar(int i) {}
+
+  @override
+  String ler(int i) {
+    return 'Daniel';
+    throw UnimplementedError();
+  }
+
+  @override
+  void apagarTodos() {}
+}
+
+
+
+// OUTRO USO PARA INTERFACES // OUTRO USO PARA INTERFACES // OUTRO USO PARA INTERFACES // OUTRO USO PARA INTERFACES // OUTRO USO PARA INTERFACES 
+// OUTRO USO PARA INTERFACES // OUTRO USO PARA INTERFACES // OUTRO USO PARA INTERFACES // OUTRO USO PARA INTERFACES // OUTRO USO PARA INTERFACES 
+// OUTRO USO PARA INTERFACES // OUTRO USO PARA INTERFACES // OUTRO USO PARA INTERFACES // OUTRO USO PARA INTERFACES // OUTRO USO PARA INTERFACES 
+
+
+void main() {
+  Movel movel1 = Pessoa();
+  movel1.frente();
+  movel1.esquerda();
+
+  //Vendivel vend1 = Carro();
+  Vendivel vend1 = Geladeira();
+  print(vend1.preco());
+}
+
+class Geladeira implements Vendivel {
+  @override
+  double preco() {
+    return 1000;
+  }
+}
+
+class Pessoa implements Movel {
+  String? nome;
+  @override
+  void direita() {}
+
+  @override
+  void esquerda() {}
+
+  @override
+  void frente() {}
+}
+
+class Carro implements Movel, Vendivel {
+  // é possível implementar duas classes (interfaces), mas não é possível herdar duas classes.
+
+  String? modelo;
+
+  @override
+  void direita() {}
+
+  @override
+  void esquerda() {}
+
+  @override
+  void frente() {}
+
+  @override
+  double preco() {
+    return 50000;
+  }
+}
+
+abstract class Movel {
+  void frente();
+  void esquerda();
+  void direita();
+}
+
+abstract class Vendivel {
+  double preco();
+}
