@@ -1,0 +1,75 @@
+### O QUE É O GIT ? ###
+
+Git é um sistema de controle de versões distribuído, usado principalmente no desenvolvimento de software, mas pode ser usado para registrar o histórico de edições de qualquer tipo de arquivo.
+
+### O QUE É O GITHUB ? ###
+
+GitHub é uma plataforma de hospedagem de código-fonte e arquivos com controle de versão usando o Git. Ele permite que programadores, utilitários ou qualquer usuário cadastrado na plataforma contribuam em projetos privados e/ou Open Source de qualquer lugar do mundo.
+
+### CICLO DE UM PROJETO NO GIT ###
+
+1) git pull da branch principal.
+2) git checkout -b (nome da nova branch).
+3) Trabalhar e adicionar novas funcionalidades na nova branch.
+4) Após terminar o trabalho na branch, adicionar, comitar e fazer o push.
+5) Fazer o pull request no github
+6) Após ser mergiado, quando criar for criar uma nova branch, criar a partir da branch principal e fazer o pull para atualizar.
+
+### COMANDOS MAIS UTILIZADOS DO GIT ###
+
+git init = Cria a pasta .git que serve para conectar o projeto remoto com o local.
+
+git clone (url do repositório a ser clonado) = Cria uma cópia do repositório remoto no ambiente local.
+
+git add (nome completo do arquivo) = Adicionei o arquivo e ele está pronto para ser enviado para o gitHub.
+
+git status = Verifica estado atual do repositório, mostrando informações de arquivos, branches, etc...
+
+git add . = Adiciona os arquivos na área de monitoramento (staging area).
+
+git commit -m "escrever uma mensagem" = Serve para deixar pronta para ser enviada uma nova versão para a branch.
+
+git rm --cached = remove arquivos da área de monitoramento.
+
+git push = Serve para enviar a branch para o repositório do GitHub, e no GitHub eu solicito um pullrequest. (Caso a branch não exista, o próprio git pedirá para inserir esse comando git push --set-upstream origin (nome da branch)) que cria uma branch
+
+git remote add (origin) (url do repositório criado no github).
+
+git reflog = Serve para verificar o histórico de atualizações(versões), (commits)...
+
+git reset --hard (colocar o ID da versão que deseja usar) = Serve para navegar entre as versões do seu projeto(localmente).
+
+git branch = Serve para ver as branchs que existem no projeto.
+
+git branch (inserir um nome) = Serve para criar uma nova branch.
+
+git checkout (nome da branch) = Serve para mudar de branch.
+
+git checkout -b (nome da nova branch) (nome da branch base) = Serve para criar e mudar para essa nova branch, será criada a partir da branch base.
+
+git commit -m "escrever uma mensagem" = Serve para enviar uma nova versão para a branch.
+
+git push = Serve para enviar a branch para o repositório do GitHub, e no GitHub eu solicito um pullrequest. (Caso a branch não exista, o próprio git pedirá para inserir esse comando git push --set-upstream origin (nome da branch))
+
+git pull = Serve para atualizar o código local com o remoto.
+
+git branch -M main = renomeia a branch principal.
+
+### GIT IGNORE ###
+
+touch .gitignore = cria um arquivo .gitignore na pasta do meu projeto, nesse arquivo .gitignore eu tenho que colocar o caminho dos arquivos que eu não quero que vá para o controle de versão... Porém eu tenho que enviar o arquivo .gitignore para o controle de versão justamente para o arquivos que eu não quero que vá, fiquem preservados.
+
+
+### MATERIAIS DE APOIO ###
+
+https://fabiotavarespr.dev/posts/alterando-repositorios-git/
+
+https://www.youtube.com/watch?v=kB5e-gTAl_s
+
+https://www.youtube.com/watch?v=oj1EAWwiojM&list=PL9aKtVrF05DzbNiE7jcm7s6z6Lg-u72Rq
+
+https://www.notion.so/ckdev/Aula-Git-6cd4a3675eff4f8b8d3b9c2d4302e01e
+
+https://www.conventionalcommits.org/pt-br/v1.0.0/
+
+https://git-scm.com/book/pt-br/v2
